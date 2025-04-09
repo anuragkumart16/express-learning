@@ -27,4 +27,18 @@ app.use(express.static("public"));
 
 app.use(cookieParser());
 
+
+// routes import
+
+/*
+here we are importing the route from the routes folder and adding it to the app but keep in mind that, in the router file its being exported as router and here we are renaming it to somehting else
+*/
+
+import userRouter from "./routes/user.routes.js";
+
+// router middleware
+
+app.use("/api/v1/users", userRouter);
+
+
 export default app;

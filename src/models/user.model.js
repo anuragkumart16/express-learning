@@ -16,7 +16,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
             unique: true,
-            lowecase: true,
+            lowercase: true,
             trim: true, 
         },
         fullName: {
@@ -54,7 +54,7 @@ const userSchema = new Schema(
 
 userSchema.pre("save", async function (next){
     if(!this.isModified("password")) return next()  //if password field is changed then only hash the details
-    this.password = bcrypt.hashSync(this.password, 10)
+    this.password = await bcrypt.hashSync(this.password, 10)
     next()
 })
 
